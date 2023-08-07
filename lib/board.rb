@@ -1,41 +1,40 @@
+
 class Board
 
-  attr_accessor :board 
+  attr_accessor :board
 
   def initialize
     @board = self.makeboard
   end
 
   def makeboard
-    arr = Array.new(42) { Array.new(2) }
-    populate_board(arr)
+    arr = Array.new(6) { Array.new(7) { 'o' }}
+    arr
   end
 
   def showboard
     i = 0
     6.times do
-      puts "#{@board[i]} #{@board[i+1]} #{@board[i+2]} #{@board[i+3]} #{@board[i+4]} #{@board[i+5]} #{@board[i+6]}"
-      i += 7
+      puts "#{5-i} | #{@board[5-i][0]} #{@board[5-i][1]} #{@board[5-i][2]} #{@board[5-i][3]} #{@board[5-i][4]} #{@board[5-i][5]} #{@board[5-i][6]}"
+      i += 1
     end
+    puts '    --------------'
+    puts '    0 1 2 3 4 5 6'
   end
 
-  private
-
-  def populate_board(arr)
+  def move(piece, column)
     i = 0
-    j = 0
-    arr.each do |sub_array|
-      sub_array[0] = i
-      sub_array[1] = j
-      j += 1
-      if j == 7
-        j = 0
-        i += 1
-      end
+    until @board[i][column] == "o"
+      i += 1
     end
-    arr
+    @board[i][column] = piece
   end
+
+#class end
 end
 
 board = Board.new
-p board.showboard
+board.move('1', 0)
+board.move('1', 0)
+
+board.showboard
