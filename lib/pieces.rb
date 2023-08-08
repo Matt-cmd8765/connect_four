@@ -1,2 +1,3 @@
 white = "\u26AA"
-black = "\u26AB"
+soccer = "\u26BD"
+baseball = "\u26BE"
