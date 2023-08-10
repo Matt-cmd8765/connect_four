@@ -39,8 +39,11 @@ class Board
         soccer_array << 'x'
         i += 1
       elsif @board[i][column] == "\u26BE"
+        soccer_array = []
         baseball_array << 'x'
         i += 1
+      else 
+        baseball_array = []
       end
     end
     if soccer_array.length == 4 || baseball_array == 4 
@@ -57,8 +60,57 @@ class Board
         soccer_array << 'x'
         i += 1
       elsif @board[row][i] == "\u26BE"
+        soccer_array = []
         baseball_array << 'x'
         i += 1
+      else
+        baseball_array = []
+      end
+    end
+    if soccer_array.length == 4 || baseball_array == 4 
+      true
+    end
+  end
+
+  def diagnol1_winner?(column)
+    soccer_array = []
+    baseball_array = []
+    i = 0
+    until @board[i][column] == "\u26AA"
+      if @board[i][column] == "\u26BD"
+        soccer_array << 'x'
+        i += 1
+        column += 1
+      elsif @board[i][column] == "\u26BE"
+        soccer_array = []
+        baseball_array << 'x'
+        i += 1
+        column += 1
+      else 
+        baseball_array = []
+      end
+    end
+    if soccer_array.length == 4 || baseball_array == 4 
+      true
+    end
+  end
+
+  def diagnol2_winner?(column)
+    soccer_array = []
+    baseball_array = []
+    i = 0
+    until @board[i][column] == "\u26AA"
+      if @board[i][column] == "\u26BD"
+        soccer_array << 'x'
+        i += 1
+        column -= 1
+      elsif @board[i][column] == "\u26BE"
+        soccer_array = []
+        baseball_array << 'x'
+        i += 1
+        column -= 1
+      else 
+        baseball_array = []
       end
     end
     if soccer_array.length == 4 || baseball_array == 4 
@@ -68,3 +120,6 @@ class Board
 
 #class end
 end
+
+board = Board.new
+board.showboard
