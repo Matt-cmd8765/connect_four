@@ -79,16 +79,16 @@ describe Board do
       board.move("\u26BD", 0)
       board.move("\u26BD", 1)
       board.move("\u26BD", 1)
-      board.move("\u26BD", 2)
+      board.move("\u26BE", 2)
       board.move("\u26BD", 2)
       board.move("\u26BD", 2)
       board.move("\u26BD", 3)
-      board.move("\u26BD", 3)
+      board.move("\u26BE", 3)
       board.move("\u26BD", 3)
       board.move("\u26BD", 3)
     end
     it 'Call winner diagnolly function 1' do
-      expect(board.diagnol1_winner?(0)).to be true
+      expect(board.diagnol1_winner?(3)).to be true
     end
   end
   context 'Does not call diagnol function 1 winner when there is none' do
@@ -121,7 +121,7 @@ describe Board do
       board.move("\u26BD", 3)
     end
     it 'Call winner diagnolly function 2' do
-      expect(board.diagnol2_winner?(6)).to be true
+      expect(board.diagnol2_winner?(3)).to be true
     end
   end
   context 'Does not call diagnol function 2 winner when there is none' do
@@ -137,7 +137,7 @@ describe Board do
       board.move("\u26BD", 3)
     end
     it 'Returns nil' do
-      expect(board.diagnol2_winner?(0)).to eq(nil)
+      expect(board.diagnol2_winner?(3)).to eq(nil)
     end
   end
 #describe end

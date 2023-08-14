@@ -1,4 +1,3 @@
-
 class Board
 
   attr_accessor :board
@@ -42,8 +41,9 @@ class Board
         soccer_array = []
         baseball_array << 'x'
         i += 1
-      else 
+      else
         baseball_array = []
+        i += 1
       end
     end
     if soccer_array.length == 4 || baseball_array == 4 
@@ -72,10 +72,12 @@ class Board
     end
   end
 
-  def diagnol1_winner?(column)
+  def diagnol1_winner?(move)
     soccer_array = []
     baseball_array = []
     i = 0
+    column = move - 3
+    return nil if column < 0
     until @board[i][column] == "\u26AA"
       if @board[i][column] == "\u26BD"
         soccer_array << 'x'
@@ -95,10 +97,13 @@ class Board
     end
   end
 
-  def diagnol2_winner?(column)
+  def diagnol2_winner?(move)
     soccer_array = []
     baseball_array = []
     i = 0
+    column = move + 3
+    return nil if column > 6
+
     until @board[i][column] == "\u26AA"
       if @board[i][column] == "\u26BD"
         soccer_array << 'x'
@@ -109,17 +114,14 @@ class Board
         baseball_array << 'x'
         i += 1
         column -= 1
-      else 
+      else
         baseball_array = []
       end
     end
-    if soccer_array.length == 4 || baseball_array == 4 
+    if soccer_array.length == 4 || baseball_array == 4
       true
     end
   end
 
 #class end
 end
-
-board = Board.new
-board.showboard
