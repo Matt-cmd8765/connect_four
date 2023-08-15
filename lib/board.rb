@@ -35,41 +35,37 @@ class Board
     i = 0
     until @board[i][column] == "\u26AA"
       if @board[i][column] == "\u26BD"
+        baseball_array = []
         soccer_array << 'x'
         i += 1
       elsif @board[i][column] == "\u26BE"
         soccer_array = []
         baseball_array << 'x'
         i += 1
-      else
-        baseball_array = []
-        i += 1
       end
     end
-    if soccer_array.length == 4 || baseball_array == 4 
+    if soccer_array.length == 4 || baseball_array.length == 4
       true
     end
   end
 
-  def horizontal_winner?(row)
+  def horizontal_winner?
     soccer_array = []
     baseball_array = []
-    i = 0
-    until @board[row][i] == "\u26AA"
-      if @board[row][i] == "\u26BD"
-        soccer_array << 'x'
-        i += 1
-      elsif @board[row][i] == "\u26BE"
-        soccer_array = []
-        baseball_array << 'x'
-        i += 1
-      else
-        baseball_array = []
+    @board.each do |row|
+      row.each do |column| 
+        if column == "\u26BD"
+          baseball_array = []
+          soccer_array << 'x'
+        elsif column == "\u26BE"
+          soccer_array = []
+          baseball_array << 'x'
+        elsif soccer_array.length == 4 || baseball_array == 4 
+          return true
+        end
       end
     end
-    if soccer_array.length == 4 || baseball_array == 4 
-      true
-    end
+    nil
   end
 
   def diagnol1_winner?(move)
@@ -78,8 +74,10 @@ class Board
     i = 0
     column = move - 3
     return nil if column < 0
+
     until @board[i][column] == "\u26AA"
       if @board[i][column] == "\u26BD"
+        baseball_array = []
         soccer_array << 'x'
         i += 1
         column += 1
@@ -88,11 +86,9 @@ class Board
         baseball_array << 'x'
         i += 1
         column += 1
-      else 
-        baseball_array = []
       end
     end
-    if soccer_array.length == 4 || baseball_array == 4 
+    if soccer_array.length == 4 || baseball_array.length == 4
       true
     end
   end
@@ -106,6 +102,7 @@ class Board
 
     until @board[i][column] == "\u26AA"
       if @board[i][column] == "\u26BD"
+        baseball_array = []
         soccer_array << 'x'
         i += 1
         column -= 1
@@ -114,11 +111,9 @@ class Board
         baseball_array << 'x'
         i += 1
         column -= 1
-      else
-        baseball_array = []
       end
     end
-    if soccer_array.length == 4 || baseball_array == 4
+    if soccer_array.length == 4 || baseball_array.length == 4
       true
     end
   end

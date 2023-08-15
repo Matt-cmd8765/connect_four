@@ -30,10 +30,10 @@ describe Board do
   end
   context 'Determines vertical winner' do
     before do
-      board.move("\u26BD", 0)
-      board.move("\u26BD", 0)
-      board.move("\u26BD", 0)
-      board.move("\u26BD", 0)
+      board.move("\u26BE", 0)
+      board.move("\u26BE", 0)
+      board.move("\u26BE", 0)
+      board.move("\u26BE", 0)
     end
     it 'calls winner vertically' do
       expect(board.vertical_winner?(0)).to be true
@@ -41,9 +41,8 @@ describe Board do
   end
   context 'Does not return vertical winner when there is none' do 
     before do
-      board.move("\u26BD", 0)
-      board.move("\u26BD", 0)
       board.move("\u26BE", 0)
+      board.move("\u26BD", 0)
       board.move("\u26BD", 0)
       board.move("\u26BD", 0)
     end
@@ -59,7 +58,7 @@ describe Board do
       board.move("\u26BD", 3)
     end
     it 'Call winner horizontally' do
-      expect(board.horizontal_winner?(0)).to be true
+      expect(board.horizontal_winner?).to be true
     end
   end
   context 'Does not call horizontal winner when there is none' do
@@ -71,7 +70,7 @@ describe Board do
       board.move("\u26BD", 4)
     end
     it 'Returns nil' do
-      expect(board.horizontal_winner?(0)).to eq(nil)
+      expect(board.horizontal_winner?).to eq(nil)
     end
   end
   context 'Determines Diagnol1 winner correctly' do

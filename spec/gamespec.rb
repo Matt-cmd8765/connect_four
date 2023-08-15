@@ -34,6 +34,21 @@ describe Game do
     end
   end
   context 'can determine tie' do
+    before do
+      array_board = game.instance_variable_get(:@board)
+      6.times do
+        array_board.move("\u26BD", 0)
+        array_board.move("\u26BE", 1)
+        array_board.move("\u26BD", 2)
+        array_board.move("\u26BE", 3)
+        array_board.move("\u26BD", 4)
+        array_board.move("\u26BE", 5)
+        array_board.move("\u26BD", 6)
+      end
+    end
+    it 'Determines tie correctly' do
+      expect(game.tie?).to eq(true)
+    end
   end
   context 'shows error message with incorrect moves' do
     let(:player) { instance_double(Player, symbol: "\u26BD") }

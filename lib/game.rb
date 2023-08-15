@@ -27,13 +27,25 @@ class Game
 
   def play
     self.info
-    @board.showboard
-    puts "#{@player1.name} your turn! pick a column"
-    move(@player1)
-    @board.showboard
-    puts "#{@player2.name} your turn! pick a column"
-    move(@player2)
-    @board.showboard
+    loop do
+      puts "#{@player1.name} your turn! pick a column"
+      @board.showboard
+      if winner?(move(@player1))
+        puts "#{player1.name} wins!"
+        @board.showboard
+        break
+      end
+      puts "#{@player2.name} your turn! pick a column"
+      @board.showboard
+      if winner?(move(@player2))
+        puts "#{player2.name} wins!"
+        @board.showboard
+        break
+      end
+      if self.tie?
+        puts "It's a tie!"
+      end
+    end
   end
 
   def move(player)
@@ -45,15 +57,13 @@ class Game
       da_move = player_move.to_i
     end
     board.move(player.symbol, da_move)
-    if winner?(da_move)
-      puts "#{player.name} wins!"
-    end
+    da_move
   end
 
   def winner?(move)
     if board.vertical_winner?(move) == true
       true
-    elsif board.horizontal_winner?(move) == true
+    elsif board.horizontal_winner? == true
       true
     elsif board.diagnol1_winner?(move) == true
       true
@@ -62,5 +72,9 @@ class Game
     else
       false
     end
+  end
+
+  def tie?
+    @board.board.none? { |piece| piece == "\u26AA" }
   end
 end
