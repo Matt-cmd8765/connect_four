@@ -60,7 +60,7 @@ class Board
         elsif column == "\u26BE"
           soccer_array = []
           baseball_array << 'x'
-        elsif soccer_array.length == 4 || baseball_array == 4 
+        elsif soccer_array.length == 4 || baseball_array.length == 4
           return true
         end
       end

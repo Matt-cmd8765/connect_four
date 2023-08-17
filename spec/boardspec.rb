@@ -52,10 +52,10 @@ describe Board do
   end
   context 'Determines horizontal winner correctly' do
     before do
-      board.move("\u26BD", 0)
-      board.move("\u26BD", 1)
-      board.move("\u26BD", 2)
-      board.move("\u26BD", 3)
+      board.move("\u26BE", 0)
+      board.move("\u26BE", 1)
+      board.move("\u26BE", 2)
+      board.move("\u26BE", 3)
     end
     it 'Call winner horizontally' do
       expect(board.horizontal_winner?).to be true

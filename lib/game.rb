@@ -75,6 +75,12 @@ class Game
   end
 
   def tie?
-    @board.board.none? { |piece| piece == "\u26AA" }
+    tiearray = []
+    @board.board.each do |row|
+      row.each do |column|
+        tiearray << column
+      end
+    end
+    tiearray.none?("\u26AA")
   end
 end

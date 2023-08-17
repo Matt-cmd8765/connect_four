@@ -50,6 +50,16 @@ describe Game do
       expect(game.tie?).to eq(true)
     end
   end
+  context 'Calls false when no tie' do
+    before do
+      array_board = game.instance_variable_get(:@board)
+      array_board.move("\u26BD", 0)
+      array_board.move("\u26BE", 1)
+    end
+    it 'Calls false when no tie' do
+      expect(game.tie?).to eq(false)
+    end
+  end
   context 'shows error message with incorrect moves' do
     let(:player) { instance_double(Player, symbol: "\u26BD") }
     before do 
