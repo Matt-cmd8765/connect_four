@@ -73,7 +73,7 @@ class Board
     baseball_array = []
     i = 0
     column = move - 3
-    return nil if column < 0
+    return nil if column.negative?
 
     until @board[i][column] == "\u26AA"
       if @board[i][column] == "\u26BD"
